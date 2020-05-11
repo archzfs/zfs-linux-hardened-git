@@ -17,10 +17,10 @@
 #
 pkgbase="zfs-linux-hardened-git"
 pkgname=("zfs-linux-hardened-git" "zfs-linux-hardened-git-headers")
-_commit='657fd33bcff17e44ad55dffdf294d7c107b4bf5d'
-_zfsver="2020.05.07.r5890.g657fd33bc"
-_kernelver="5.6.10.a-1"
-_extramodules="5.6.10.a-1-hardened"
+_commit='7fcf82451c4b75afe327c77683f66bf0c6396a48'
+_zfsver="2020.05.10.r5897.g7fcf82451"
+_kernelver="5.6.11.a-1"
+_extramodules="5.6.11.a-1-hardened"
 
 pkgver="${_zfsver}_$(echo ${_kernelver} | sed s/-/./g)"
 pkgrel=1
@@ -46,8 +46,8 @@ build() {
     cd "${srcdir}/zfs"
     ./autogen.sh
     ./configure --prefix=/usr --sysconfdir=/etc --sbindir=/usr/bin --libdir=/usr/lib \
-                --datadir=/usr/share --includedir=/usr/include --with-udevdir=/lib/udev \
-                --libexecdir=/usr/lib/zfs-${_zfsver} --with-config=kernel \
+                --datadir=/usr/share --includedir=/usr/include --with-udevdir=/usr/lib/udev \
+                --libexecdir=/usr/lib --with-config=kernel \
                 --with-linux=/usr/lib/modules/${_extramodules}/build \
                 --with-linux-obj=/usr/lib/modules/${_extramodules}/build
     make
@@ -61,9 +61,7 @@ package_zfs-linux-hardened-git() {
     conflicts=("zfs-dkms" "zfs-dkms-git" "zfs-dkms-rc" "spl-dkms" "spl-dkms-git" 'zfs-linux-hardened' 'spl-linux-hardened-git' 'spl-linux-hardened')
     replaces=("spl-linux-hardened-git")
     cd "${srcdir}/zfs"
-    make DESTDIR="${pkgdir}" install
-    cp -r "${pkgdir}"/{lib,usr}
-    rm -r "${pkgdir}"/lib
+    make DESTDIR="${pkgdir}" INSTALL_MOD_PATH=/usr install
     # Remove src dir
     rm -r "${pkgdir}"/usr/src
 }
