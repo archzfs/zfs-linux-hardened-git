@@ -17,10 +17,10 @@
 #
 pkgbase="zfs-linux-hardened-git"
 pkgname=("zfs-linux-hardened-git" "zfs-linux-hardened-git-headers")
-_commit='0aacde2e9a818942f4e25ab765b3a4849aac6de8'
-_zfsver="2020.12.02.r6419.g0aacde2e9"
-_kernelver="5.9.10.a-1"
-_extramodules="5.9.10.a-1-hardened"
+_commit='8e8fdce682f83d4ba4362fa916f42ec3ad80a4c3'
+_zfsver="2020.12.07.r6433.g8e8fdce68"
+_kernelver="5.9.12.a-1"
+_extramodules="5.9.12.a-1-hardened"
 
 pkgver="${_zfsver}_$(echo ${_kernelver} | sed s/-/./g)"
 pkgrel=1
