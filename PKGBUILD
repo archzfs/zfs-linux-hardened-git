@@ -17,9 +17,9 @@
 #
 pkgbase="zfs-linux-hardened-git"
 pkgname=("zfs-linux-hardened-git" "zfs-linux-hardened-git-headers")
-_commit='ce2bdcedf549b2d83ae9df23a3fa0188b33327b7'
-_zfsver="2021.09.24.r7112.gce2bdcedf"
-_kernelver="5.14.8.hardened1-1"
+_commit='60b618a967b1bb60225139a5e687a8cbd38041e0'
+_zfsver="2021.10.02.r7115.g60b618a96"
+_kernelver="5.14.9.hardened1-1"
 _extramodules="${_kernelver/.hardened/-hardened}-hardened"
 
 pkgver="${_zfsver}_$(echo ${_kernelver} | sed s/-/./g)"
@@ -51,7 +51,7 @@ package_zfs-linux-hardened-git() {
     conflicts=("zfs-dkms" "zfs-dkms-git" "zfs-dkms-rc" "spl-dkms" "spl-dkms-git" 'zfs-linux-hardened' 'spl-linux-hardened-git' 'spl-linux-hardened')
     replaces=("spl-linux-hardened-git")
     cd "${srcdir}/zfs"
-    make DESTDIR="${pkgdir}" INSTALL_MOD_PATH=/usr install
+    make DESTDIR="${pkgdir}" INSTALL_MOD_PATH=${pkgdir}/usr install
     # Remove src dir
     rm -r "${pkgdir}"/usr/src
 }
