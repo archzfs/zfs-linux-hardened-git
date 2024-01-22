@@ -17,10 +17,10 @@
 #
 pkgbase="zfs-linux-hardened-git"
 pkgname=("zfs-linux-hardened-git" "zfs-linux-hardened-git-headers")
-_commit='a1771d243a57524c6599d7beedcb2085e5c05395'
-_zfsver="2024.01.12.r8967.ga1771d243a"
-_kernelver="6.6.11.hardened1-1"
-_kernelver_full="6.6.11.hardened1-1"
+_commit='d9cb42da999e77a2ea3ee5488a5ca0f4c27db2fe'
+_zfsver="2024.01.19.r8980.gd9cb42da99"
+_kernelver="6.6.13.hardened1-1"
+_kernelver_full="6.6.13.hardened1-1"
 _extramodules="${_kernelver/.hardened/-hardened}-hardened"
 
 pkgver="${_zfsver}_$(echo ${_kernelver} | sed s/-/./g)"
@@ -28,8 +28,8 @@ pkgrel=1
 makedepends=("linux-hardened-headers=${_kernelver}" "git")
 arch=("x86_64")
 url="https://openzfs.org/"
-source=("git+https://github.com/openzfs/zfs.git#commit=${_commit}")
-sha256sums=("SKIP")
+source=("git+https://github.com/openzfs/zfs.git#commit=${_commit}" "linux-6.7-compat.patch")
+sha256sums=("SKIP" "5afd5ce236dfe0eb96abbe61a61c211623cb4a89c9fbb0be5f9f400a0970719e")
 license=("CDDL")
 depends=("kmod" "zfs-utils-git=${_zfsver}" "linux-hardened=${_kernelver}")
 
